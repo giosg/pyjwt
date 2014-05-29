@@ -234,5 +234,5 @@ def verify_signature(payload, signing_input, header, signature, key='',
 
     if 'exp' in payload and verify_expiration:
         utc_timestamp = timegm(datetime.utcnow().utctimetuple())
-        if payload['exp'] < (utc_timestamp - leeway):
+        if int(payload['exp']) < (utc_timestamp - leeway):
             raise ExpiredSignature("Signature has expired")
